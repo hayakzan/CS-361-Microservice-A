@@ -31,7 +31,7 @@ GET /api/keys/validate?key=<KEY>
   ```json
   {
     "valid": true,
-    "roomId": 42
+    "roomId": 99
   }
   ```
 * **404 Not Found**
@@ -98,11 +98,11 @@ sequenceDiagram
 
     App->>Service: GET /api/keys/validate?key='KEY'
     Service->>DB: SELECT room_id FROM key_mappings WHERE key='KEY'
-    DB-->>Service: { room_id: 0 } or empty
+    DB-->>Service: { room_id: 99 } or empty
 
     alt key found
         Service-->>App: 200 OK  
-        Note right of App: {"valid":true,"roomId":0}
+        Note right of App: {"valid":true,"roomId":99}
     else key not found
         Service-->>App: 404 Not Found  
         Note right of App: {"valid":false,"error":"Key not found"}
