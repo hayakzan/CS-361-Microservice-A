@@ -56,10 +56,10 @@ GET /api/keys/validate?key=<KEY>
 
 ```bash
 # Clone the microservice repository
-git clone https://github.com/your-org/CS-361-Microservice-A.git
+git clone https://github.com/your-org/CS361-Microservice-A.git
 
 # Navigate to the microservice folder
-cd CS-361-Microservice-A
+cd CS361-Microservice-A
 
 # Install dependencies
 npm install
@@ -82,7 +82,7 @@ npm start
 > ```
 >
 > ```bash 
->  # unknown key
+> # unknown key
 > curl "http://localhost:4000/api/keys/validate?key=WRONGKEY"
 > ```
 
