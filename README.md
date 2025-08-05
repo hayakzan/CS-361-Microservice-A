@@ -90,7 +90,7 @@ def test_key(key: str):
         print(f"Request failed: {e}")
         return
 
-    print(f"  HTTP {resp.status_code}")
+    print(f"HTTP {resp.status_code}")
     try:
         data = resp.json()
     except ValueError:
@@ -105,8 +105,8 @@ def test_key(key: str):
     else:
         print(f"Unexpected response: {data}")
 ```
+See the full Python example in [`test.py`](test.py).
 
-See the full Python example in [`test_validate.py`](test_validate.py).
 ---
 
 ## UML Sequence Diagram
