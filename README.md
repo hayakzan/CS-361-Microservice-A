@@ -66,26 +66,47 @@ npm install
 
 # Start the service (default port: 4000)
 npm start
+
+# (Optional) If using the Python test script, install requests:
+# Create and activate a virtual environment, then:
+# python3 -m venv venv
+# source venv/bin/activate
+# pip install requests
+
 ```
 
-> **Note:** The service persists keys in `keys.db`. To insert a test key, run:
->
-> ```bash
-> sqlite3 keys.db \
->   "INSERT OR IGNORE INTO key_mappings(key,room_id) VALUES('TEST-KEY-123', 99);"
-> ```
->
-> Test via `curl`:
-> ```bash
-> # known key
-> curl "http://localhost:4000/api/keys/validate?key=TEST-KEY-123"
-> ```
->
-> ```bash 
-> # unknown key
-> curl "http://localhost:4000/api/keys/validate?key=WRONGKEY"
-> ```
+## Example Client Call (Python)
 
+```python
+import requests
+
+def test_key(key: str):
+    url = f"http://localhost:4000/api/keys/validate?key={key}"
+    print(f"Requesting key: {key!r}")
+    
+    try:
+        resp = requests.get(url, timeout=5)
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+        return
+
+    print(f"  HTTP {resp.status_code}")
+    try:
+        data = resp.json()
+    except ValueError:
+        print(f"Invalid JSON response:
+{resp.text}")
+        return
+
+    if resp.status_code == 200:
+        print(f"valid={data.get('valid')}, roomId={data.get('roomId')}")
+    elif resp.status_code == 404:
+        print(f"valid={data.get('valid')}, error={data.get('error')}")
+    else:
+        print(f"Unexpected response: {data}")
+```
+
+See the full Python example in [`test_validate.py`](test_validate.py).
 ---
 
 ## UML Sequence Diagram
