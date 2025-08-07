@@ -56,7 +56,7 @@ GET /api/keys/validate?key=<KEY>
 
 ```bash
 # Clone the microservice repository
-git clone https://github.com/your-org/CS361-Microservice-A.git
+git clone https://github.com/hayakzan/CS361-Microservice-A.git
 
 # Navigate to the microservice folder
 cd CS361-Microservice-A
